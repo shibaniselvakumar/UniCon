@@ -1,11 +1,20 @@
-// backend/routes/studyLounge.js
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // assume this is mysql2 pool or connection
+const db = require('../db');
 
 // Create Study Room
 router.post('/create', async (req, res) => {
   const { topic, max_members, scheduled_time, created_by } = req.body;
+
+  // Basic validation
+  if (!topic || !max_members || !scheduled_time || !created_by) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  if (isNaN(max_members)) {
+    return res.status(400).json({ error: 'Max members should be a number' });
+  }
+
   try {
     await db.query('CALL CreateRoom(?, ?, ?, ?)', [topic, max_members, scheduled_time, created_by]);
     res.status(201).json({ message: 'Room created successfully' });
@@ -18,7 +27,14 @@ router.post('/create', async (req, res) => {
 // Join Study Room
 router.post('/join', async (req, res) => {
   const { room_id, student_id } = req.body;
+
   try {
+    const [room] = await db.query('SELECT * FROM StudyRoom WHERE room_id = ?', [room_id]);
+
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+
     await db.query('CALL JoinRoom(?, ?)', [room_id, student_id]);
     res.status(200).json({ message: 'Joined room successfully' });
   } catch (error) {
@@ -36,7 +52,8 @@ router.get('/rooms', async (req, res) => {
         r.student_id, r.joined_at
       FROM StudyRoom s
       LEFT JOIN RoomMembership r ON s.room_id = r.room_id
-      ORDER BY s.room_id`);
+      ORDER BY s.room_id
+    `);
 
     // Group rooms by room_id
     const rooms = {};
@@ -63,6 +80,31 @@ router.get('/rooms', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch rooms' });
+  }
+});
+
+// Delete Room
+router.delete('/delete', async (req, res) => {
+  const { room_id, creator_id } = req.body;
+
+  try {
+    const [room] = await db.query('SELECT created_by FROM StudyRoom WHERE room_id = ?', [room_id]);
+
+    // Check if room exists
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+
+    if (room.created_by === creator_id) {
+      await db.query('DELETE FROM StudyRoom WHERE room_id = ?', [room_id]);
+      await db.query('DELETE FROM RoomMembership WHERE room_id = ?', [room_id]);
+      res.status(200).json({ message: 'Room deleted successfully' });
+    } else {
+      res.status(403).json({ error: 'You are not authorized to delete this room' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to delete room' });
   }
 });
 

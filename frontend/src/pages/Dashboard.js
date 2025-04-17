@@ -1,8 +1,14 @@
-// src/pages/Dashboard.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './Dashboard.css';
 
 const Dashboard = () => {
+  const navigate = useNavigate(); // Initialize navigate function
+
+  const handleEnterStudyLounge = () => {
+    navigate('/study-lounge'); // Navigate to Study Lounge page
+  };
+
   return (
     <div className="dashboard-wrapper">
       <nav className="navbar">
@@ -20,7 +26,7 @@ const Dashboard = () => {
           <div className="feature-panel study">
             <h2>🧠 Study Lounge</h2>
             <p>A dedicated space to study together with global peers.</p>
-            <button>Enter</button>
+            <button onClick={handleEnterStudyLounge}>Enter</button> {/* Button with onClick handler */}
           </div>
 
           <div className="feature-panel build">
@@ -36,40 +42,41 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
+      
       {/* Gamification Panel */}
-<div className="gamification-panel">
-  <h2>🎮 Your Progress</h2>
-  <div className="gamify-stats">
-    <div className="gamify-card">
-      <span className="icon">🏅</span>
-      <div>
-        <h4>Badges</h4>
-        <p>Contributor, Team Player</p>
+      <div className="gamification-panel">
+        <h2>🎮 Your Progress</h2>
+        <div className="gamify-stats">
+          <div className="gamify-card">
+            <span className="icon">🏅</span>
+            <div>
+              <h4>Badges</h4>
+              <p>Contributor, Team Player</p>
+            </div>
+          </div>
+          <div className="gamify-card">
+            <span className="icon">🌟</span>
+            <div>
+              <h4>Level</h4>
+              <p>Level 3</p>
+            </div>
+          </div>
+          <div className="gamify-card">
+            <span className="icon">🔥</span>
+            <div>
+              <h4>Streak</h4>
+              <p>5 days</p>
+            </div>
+          </div>
+          <div className="gamify-card">
+            <span className="icon">🎯</span>
+            <div>
+              <h4>Goal</h4>
+              <p>3 of 5 tasks complete</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="gamify-card">
-      <span className="icon">🌟</span>
-      <div>
-        <h4>Level</h4>
-        <p>Level 3</p>
-      </div>
-    </div>
-    <div className="gamify-card">
-      <span className="icon">🔥</span>
-      <div>
-        <h4>Streak</h4>
-        <p>5 days</p>
-      </div>
-    </div>
-    <div className="gamify-card">
-      <span className="icon">🎯</span>
-      <div>
-        <h4>Goal</h4>
-        <p>3 of 5 tasks complete</p>
-      </div>
-    </div>
-  </div>
-</div>
 
     </div>
   );
