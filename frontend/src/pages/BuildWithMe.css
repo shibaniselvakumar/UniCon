@@ -1,0 +1,82 @@
+/* Header Section */
+.build-header-section {
+    background: linear-gradient(135deg, #b4befe, #e0c3fc);
+    padding: 60px 30px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .header-title {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    animation: popIn 1s ease-in-out;
+  }
+  
+  .header-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+  }
+  
+  /* Main Build Section */
+  .build-wrapper {
+    background: #f9f9fb;
+    padding: 60px 40px;
+    min-height: 100vh;
+    background-color: #d2fff6; /* Background color behind the cards */
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .feature-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #1e1f3c;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Animations */
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { createRoom, getAllRooms } from '../utils/api';
-import './StudyLounge.css'; // Importing the external CSS file
+import { createRoom, getAllRooms } from '../utils/api'; 
+import { motion } from 'framer-motion'; 
+import { FaUsers, FaClock, FaComments } from 'react-icons/fa'; 
+import './StudyLounge.css'; 
 
 const StudyLounge = () => {
   const [topic, setTopic] = useState('');
@@ -8,18 +10,16 @@ const StudyLounge = () => {
   const [scheduledTime, setScheduledTime] = useState('');
   const [rooms, setRooms] = useState([]);
 
-  // Handle creating a room
   const handleCreateRoom = async () => {
     try {
-      const createdRoom = await createRoom(topic, maxMembers, scheduledTime, 1); // assuming created_by is 1
+      const createdRoom = await createRoom(topic, maxMembers, scheduledTime, 1); 
       alert(createdRoom.message);
-      fetchRooms(); // Refresh the room list after creation
+      fetchRooms(); 
     } catch (error) {
       alert('Failed to create room');
     }
   };
 
-  // Fetch all rooms
   const fetchRooms = async () => {
     try {
       const roomList = await getAllRooms();
@@ -29,15 +29,27 @@ const StudyLounge = () => {
     }
   };
 
-  // Load rooms on component mount
   useEffect(() => {
     fetchRooms();
   }, []);
 
   return (
-    <div className="study-lounge-container">
-      <h1 className="study-lounge-title">Study Lounge</h1>
-      <div className="study-lounge-form-container">
+    <motion.div
+      className="study-lounge-fullscreen"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <header className="study-lounge-header">
+        <h1 className="study-lounge-title">Study Lounge</h1>
+      </header>
+
+      <motion.div
+        className="study-lounge-form-container"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <h3 className="study-lounge-form-title">Create a New Room</h3>
         <input
           className="study-lounge-input"
@@ -60,26 +72,55 @@ const StudyLounge = () => {
           onChange={(e) => setScheduledTime(e.target.value)}
         />
         <button className="study-lounge-button" onClick={handleCreateRoom}>Create Room</button>
-      </div>
+      </motion.div>
 
-      <div className="study-lounge-rooms-container">
+      <motion.div
+        className="study-lounge-rooms-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.4 }}
+      >
         <h3 className="study-lounge-rooms-title">Available Rooms</h3>
         {rooms.length === 0 ? (
           <p className="study-lounge-no-rooms">No rooms available</p>
         ) : (
-          <ul className="study-lounge-rooms-list">
+          <div className="room-cards-container">
             {rooms.map((room) => (
-              <li key={room.room_id} className="study-lounge-room-item">
-                {room.topic} (Max: {room.max_members} members)
-                <button className="study-lounge-join-button" onClick={() => alert(`Joined room ${room.room_id}`)}>
-                  Join Room
-                </button>
-              </li>
+              <motion.div
+                key={room.room_id}
+                className="study-lounge-room-card"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="card-header">
+                  <h4>{room.topic}</h4>
+                  <div className="card-stats">
+                    <div className="card-stat">
+                      <FaUsers />
+                      <span>{room.max_members} Members</span>
+                    </div>
+                    <div className="card-stat">
+                      <FaClock />
+                      <span>{new Date(room.scheduled_time).toLocaleString()}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <p className="card-description">Join this room for collaborative study sessions.</p>
+                  <button
+                    className="study-lounge-join-button"
+                    onClick={() => alert(`Joined room ${room.room_id}`)}
+                  >
+                    Join Room
+                  </button>
+                </div>
+              </motion.div>
             ))}
-          </ul>
+          </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

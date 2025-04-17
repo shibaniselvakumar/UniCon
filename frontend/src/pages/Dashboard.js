@@ -9,6 +9,10 @@ const Dashboard = () => {
     navigate('/study-lounge'); // Navigate to Study Lounge page
   };
 
+  const handleExploreBuildWithMe = () => {
+    navigate('/buildwithme'); // Navigate to Build With Me page
+  };
+
   return (
     <div className="dashboard-wrapper">
       <nav className="navbar">
@@ -26,13 +30,13 @@ const Dashboard = () => {
           <div className="feature-panel study">
             <h2>🧠 Study Lounge</h2>
             <p>A dedicated space to study together with global peers.</p>
-            <button onClick={handleEnterStudyLounge}>Enter</button> {/* Button with onClick handler */}
+            <button onClick={handleEnterStudyLounge}>Enter</button>
           </div>
 
           <div className="feature-panel build">
             <h2>🤝 Build With Me</h2>
             <p>Find collaborators and build exciting projects together.</p>
-            <button>Explore</button>
+            <button onClick={handleExploreBuildWithMe}>Explore</button> {/* Navigate to Build With Me */}
           </div>
 
           <div className="feature-panel resources">
@@ -42,7 +46,7 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-      
+
       {/* Gamification Panel */}
       <div className="gamification-panel">
         <h2>🎮 Your Progress</h2>
@@ -77,7 +81,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
