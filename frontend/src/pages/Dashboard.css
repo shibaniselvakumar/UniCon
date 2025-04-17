@@ -1,0 +1,133 @@
+/* src/pages/Dashboard.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins' ;
+    background-color: #f9fafb;
+  }
+  
+  
+  .dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #1e293b;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+  }
+  
+  .app-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #38bdf8;
+  }
+  
+  .nav-links span {
+    margin-left: 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  /* Main Content */
+  .dashboard-content {
+    padding: 2rem;
+    flex: 1;
+  }
+  
+  .dashboard-content h1 {
+    margin-bottom: 2rem;
+    color: #1e293b;
+  }
+  
+  /* Feature Panels */
+  .features-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .feature-panel {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    flex: 1;
+    min-width: 280px;
+    transition: 0.3s;
+  }
+  
+  .feature-panel:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-panel h2 {
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-panel p {
+    color: #475569;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-panel button {
+    padding: 0.6rem 1.2rem;
+    background-color: #38bdf8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .feature-panel button:hover {
+    background-color: #0ea5e9;
+  }
+  /* Gamification Panel */
+.gamification-panel {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: lavender;
+  }
+  
+  .gamification-panel h2 {
+    margin-bottom: 1rem;
+    color: #334155;
+  }
+  
+  .gamify-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .gamify-card {
+    background-color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    min-width: 220px;
+    flex: 1;
+    gap: 1rem;
+    transition: transform 0.2s;
+  }
+  
+  .gamify-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .gamify-card .icon {
+    font-size: 2rem;
+  }
+  
