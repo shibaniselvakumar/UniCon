@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { createRoom, getAllRooms } from '../utils/api'; 
-import { motion } from 'framer-motion'; 
-import { FaUsers, FaClock, FaComments } from 'react-icons/fa'; 
-import './StudyLounge.css'; 
+import { createRoom, getAllRooms } from '../utils/api';
+import { motion } from 'framer-motion';
+import { FaUsers, FaClock } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './StudyLounge.css';
+
+const emojiAvatars = ['📚', '🧠', '🎓', '📝', '💡', '🤓'];
 
 const StudyLounge = () => {
   const [topic, setTopic] = useState('');
@@ -11,12 +15,20 @@ const StudyLounge = () => {
   const [rooms, setRooms] = useState([]);
 
   const handleCreateRoom = async () => {
+    if (!topic || !scheduledTime || !maxMembers) {
+      toast.warn("Please fill all fields before creating a room!");
+      return;
+    }
+
     try {
       const createdRoom = await createRoom(topic, maxMembers, scheduledTime, 1); 
-      alert(createdRoom.message);
-      fetchRooms(); 
+      toast.success(createdRoom.message || "Room created successfully!");
+      fetchRooms();
+      setTopic('');
+      setMaxMembers(5);
+      setScheduledTime('');
     } catch (error) {
-      alert('Failed to create room');
+      toast.error("Failed to create room");
     }
   };
 
@@ -40,6 +52,8 @@ const StudyLounge = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
+      <ToastContainer position="top-right" autoClose={3000} />
+
       <header className="study-lounge-header">
         <h1 className="study-lounge-title">Study Lounge</h1>
       </header>
@@ -85,7 +99,7 @@ const StudyLounge = () => {
           <p className="study-lounge-no-rooms">No rooms available</p>
         ) : (
           <div className="room-cards-container">
-            {rooms.map((room) => (
+            {rooms.map((room, index) => (
               <motion.div
                 key={room.room_id}
                 className="study-lounge-room-card"
@@ -94,6 +108,7 @@ const StudyLounge = () => {
                 transition={{ duration: 0.8 }}
               >
                 <div className="card-header">
+                  <div className="avatar-emoji">{emojiAvatars[index % emojiAvatars.length]}</div>
                   <h4>{room.topic}</h4>
                   <div className="card-stats">
                     <div className="card-stat">
@@ -110,7 +125,7 @@ const StudyLounge = () => {
                   <p className="card-description">Join this room for collaborative study sessions.</p>
                   <button
                     className="study-lounge-join-button"
-                    onClick={() => alert(`Joined room ${room.room_id}`)}
+                    onClick={() => toast.info(`Joined room ${room.room_id}`)}
                   >
                     Join Room
                   </button>

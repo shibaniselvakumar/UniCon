@@ -5,6 +5,14 @@ require('dotenv').config();
 
 const app = express();
 
+const fs = require('fs');
+const uploadsDir = './uploads';
+
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -14,10 +22,13 @@ app.use(express.json());
 const studentRoutes = require('./routes/studentRoutes');
 const authRoutes = require('./routes/authRoutes');
 const studyLoungeRoutes = require('./routes/studyLoungeRoutes');
-app.use('/api/study-lounge', studyLoungeRoutes);
+const resourcehubRoutes = require('./routes/resourceRoutes');
+
 
 app.use('/api/student', studentRoutes); 
 app.use('/api/auth', authRoutes);
+app.use('/api/study-lounge', studyLoungeRoutes);
+app.use('/api/resourcehub', resourcehubRoutes);
 
 
 // Health check

@@ -6,7 +6,10 @@ import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
 import StudyLounge from './pages/StudyLounge.js';
 import BuildWithMe from './pages/BuildWithMe.js';
+import ResourceHub from './pages/ResourceHub.js';
 import './App.css'; 
+
+
 
 function App() {
   return (
@@ -18,6 +21,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/study-lounge" element={<StudyLounge />} />
         <Route path="/buildwithme" element={<BuildWithMe/>} />
+        <Route path="/resourcehub" element={<ResourceHub/>} />
       </Routes>
     </Router>
   );

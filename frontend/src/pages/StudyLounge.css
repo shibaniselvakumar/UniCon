@@ -1,162 +1,187 @@
-/* Base Styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f3f4f6;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fef6f0;
+}
+
+.study-lounge-fullscreen {
+  background: #fef6f0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.study-lounge-header {
+  width: 100%;
+  background: linear-gradient(135deg, #d2b6ff, #eacfff);
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.study-lounge-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Form Container */
+.study-lounge-form-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.study-lounge-form-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.study-lounge-input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background: #fff9f9;
+  transition: border-color 0.3s;
+}
+
+.study-lounge-input:focus {
+  border-color: #d2b6ff;
+  outline: none;
+}
+
+.study-lounge-button {
+  width: 100%;
+  padding: 14px;
+  background: #ffc1cc;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.study-lounge-button:hover {
+  background: #ff9aa2;
+}
+
+/* Rooms */
+.study-lounge-rooms-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.study-lounge-rooms-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.room-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.study-lounge-room-card {
+  background: #fff;
+  width: 300px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.study-lounge-room-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background: #b2d8d8;
+  color: #333;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-header h4 {
+  margin: 0;
+}
+
+.card-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-description {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.study-lounge-join-button {
+  padding: 10px 20px;
+  background: #ffb3c6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.study-lounge-join-button:hover {
+  background: #f293a1;
+}
+
+.study-lounge-no-rooms {
+  font-style: italic;
+  color: #aaa;
+  margin-top: 20px;
+}
+
+.avatar-emoji {
+  font-size: 2.5rem;
+  animation: float 2s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-  
-  .study-lounge-fullscreen {
-    background: #f9d7e1; /* Soft teal */
-    padding: 40px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  50% {
+    transform: translateY(-5px);
   }
-  
-  /* Header */
-  .study-lounge-header {
-    width: 100%;
-    background-color: #ffbb99; /* Peachy background */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .study-lounge-title {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-  
-  /* Form Container */
-  .study-lounge-form-container {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    margin: 20px 0;
-  }
-  
-  /* Input Fields and Button */
-  .study-lounge-input {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 18px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    background: #f9f9f9;
-  }
-  
-  .study-lounge-button {
-    width: 100%;
-    padding: 14px;
-    background: #fd946d; /* Coral button */
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  
-  .study-lounge-button:hover {
-    background: #ff6347; /* Darker Coral */
-  }
-  
-  /* Rooms Container */
-  .study-lounge-rooms-container {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .study-lounge-rooms-title {
-    font-size: 2rem;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  
-  /* Room Cards */
-  .room-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .study-lounge-room-card {
-    background-color: #ffffff;
-    width: 300px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .study-lounge-room-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-header {
-    background: #a26cb9;
-    color: white;
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .card-stats {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-  }
-  
-  .card-stat {
-    display: flex;
-    align-items: center;
-  }
-  
-  .card-stat span {
-    margin-left: 5px;
-  }
-  
-  .card-body {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .card-description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  .study-lounge-join-button {
-    padding: 10px 20px;
-    background: #ff7f50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .study-lounge-join-button:hover {
-    background: #ff6347;
-  }
-  
-  .study-lounge-no-rooms {
-    color: #888;
-    font-style: italic;
-    text-align: center;
-  }
-  
+}

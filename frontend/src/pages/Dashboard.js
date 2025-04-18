@@ -13,6 +13,10 @@ const Dashboard = () => {
     navigate('/buildwithme'); // Navigate to Build With Me page
   };
 
+  const handleExploreResources = () => {
+    navigate('/resourcehub'); // Navigate to Resource Hub page
+  };
+
   return (
     <div className="dashboard-wrapper">
       <nav className="navbar">
@@ -36,13 +40,13 @@ const Dashboard = () => {
           <div className="feature-panel build">
             <h2>🤝 Build With Me</h2>
             <p>Find collaborators and build exciting projects together.</p>
-            <button onClick={handleExploreBuildWithMe}>Explore</button> {/* Navigate to Build With Me */}
+            <button onClick={handleExploreBuildWithMe}>Explore</button>
           </div>
 
           <div className="feature-panel resources">
             <h2>📚 Resource Hub</h2>
             <p>Access notes, past papers, and curated learning materials.</p>
-            <button>Browse</button>
+            <button onClick={handleExploreResources}>Browse</button> {/* Navigate to Resource Hub */}
           </div>
         </div>
       </main>
