@@ -51,14 +51,28 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     const query = 'INSERT INTO resources (title, description, tags, file_name, file_path, uploader_id) VALUES (?, ?, ?, ?, ?, ?)';
     const values = [title, description, tags, fileName, filePath, uploaderId];
   
-    db.query(query, values, (error, results) => {
-      if (error) {
-        console.error("DB Error:", error);
-        return res.status(500).json({ message: 'Error saving resource to database' });
-      }
+    try {
+      const [results] = await db.query(query, values);
       res.status(200).json({ message: 'File uploaded successfully', data: results });
-    });
+    } catch (error) {
+      console.error("DB Error:", error);
+      res.status(500).json({ message: 'Error saving resource to database' });
+    }
   });
+  
+  
+  // Fetch all uploaded resources (GET)
+  router.get('/resources', async (req, res) => {
+    try {
+        const [results] = await db.query('SELECT * FROM resources ORDER BY resource_id DESC');
+
+      res.status(200).json(results);
+    } catch (err) {
+      console.error('DB error:', err);
+      res.status(500).json({ message: 'Failed to fetch resources' });
+    }
+  });
+  
   
 
 module.exports = router;

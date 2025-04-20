@@ -1,0 +1,153 @@
+/* Main Container */
+
+body, html{
+  background-color:#FF9A8B
+}
+.post-project-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #B2EBF2; /* Light Aqua */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #009688; /* Teal */
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: #00BCD4; /* Bright Aqua */
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.form-step {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.form-group textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #00BCD4; /* Bright Aqua */
+  outline: none;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-btn, .prev-btn, .submit-btn {
+  padding: 12px 20px;
+  background-color: #FFCDD2; /* Blush Pink */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover, .prev-btn:hover, .submit-btn:hover {
+  background-color: #FFAB91; /* Lighter Blush Pink */
+}
+
+.teammates-section {
+  margin-top: 40px;
+}
+
+.teammates-section h3 {
+  color: #009688; /* Teal */
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.teammate-field {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.teammate-field input {
+  width: 48%;
+  margin-right: 4%;
+}
+
+.teammate-field input:last-child {
+  margin-right: 0;
+}
+
+button[type="button"] {
+  padding: 10px 20px;
+  background-color: #00BCD4; /* Bright Aqua */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="button"]:hover {
+  background-color: #009688; /* Teal */
+}
+
+.error-messages {
+  background-color: #FFEBEE; /* Light Blush */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #D32F2F; /* Error Red */
+  font-size: 1rem;
+}
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 600px) {
+  .post-project-container {
+    padding: 20px;
+  }
+}
+
+/* Confirmation Details */
+.confirmation-details {
+  margin-top: 20px;
+}
+
+.confirmation-details p {
+  font-size: 16px;
+}
+
+.confirmation-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.confirmation-details ul li {
+  margin-bottom: 5px;
+}

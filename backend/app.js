@@ -4,6 +4,7 @@ const db = require('./db');
 require('dotenv').config(); 
 
 const app = express();
+app.use('/uploads', express.static('uploads'));
 
 const fs = require('fs');
 const uploadsDir = './uploads';
@@ -23,12 +24,18 @@ const studentRoutes = require('./routes/studentRoutes');
 const authRoutes = require('./routes/authRoutes');
 const studyLoungeRoutes = require('./routes/studyLoungeRoutes');
 const resourcehubRoutes = require('./routes/resourceRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const findProjectsRoutes = require('./routes/findProjectRoutes');
+
+
 
 
 app.use('/api/student', studentRoutes); 
 app.use('/api/auth', authRoutes);
 app.use('/api/study-lounge', studyLoungeRoutes);
 app.use('/api/resourcehub', resourcehubRoutes);
+app.use('/api/projects', projectRoutes); // Project routes
+app.use('/api/find-projects', findProjectsRoutes); // Find Projects routes
 
 
 // Health check
