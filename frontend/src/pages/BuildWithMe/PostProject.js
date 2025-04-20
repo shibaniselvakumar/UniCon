@@ -13,7 +13,7 @@ const PostProject = () => {
   const [teammates, setTeammates] = useState([{ role_name: '', num_teammates: '' }]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
-  const [step, setStep] = useState(1);  // Track the current step
+  const [step, setStep] = useState(1);
 
   const validateForm = () => {
     const errors = [];
@@ -21,7 +21,7 @@ const PostProject = () => {
       if (!title) errors.push('Title is required');
       if (!description) errors.push('Description is required');
     }
-    if (step === 2 && teammates.some(teammate => !teammate.role_name || !teammate.num_teammates)) {
+    if (step === 2 && teammates.some(t => !t.role_name || !t.num_teammates)) {
       errors.push('All role and teammate fields must be filled');
     }
     return errors;
@@ -36,12 +36,11 @@ const PostProject = () => {
     }
 
     if (step === 1) {
-      setStep(2);  // Move to the next step (team roles)
+      setStep(2);
     } else if (step === 2) {
-      setStep(3);  // Move to the confirmation step
+      setStep(3);
     } else {
       setIsSubmitting(true);
-
       try {
         const response = await axios.post('http://localhost:5000/api/projects/create', {
           title,
@@ -64,44 +63,43 @@ const PostProject = () => {
 
   const handleTeammateChange = (index, e) => {
     const { name, value } = e.target;
-    const updatedTeammates = [...teammates];
-    updatedTeammates[index][name] = value;
-    setTeammates(updatedTeammates);
+    const updated = [...teammates];
+    updated[index][name] = value;
+    setTeammates(updated);
   };
 
   const addTeammateField = () => {
     setTeammates([...teammates, { role_name: '', num_teammates: '' }]);
   };
 
-  const progressBarWidth = (step) => {
+  const progressBarWidth = () => {
     if (step === 1) return '33%';
     if (step === 2) return '66%';
-    if (step === 3) return '100%';
-    return '0%';
+    return '100%';
   };
 
   return (
-    
     <div className="post-project-container">
-      <h2>Post Your Project</h2>
+      <div className="background-stars"></div>
+      <h2>🚀 Post Your Project</h2>
 
-      {/* Progress Bar */}
-      <div className="progress-bar" style={{ width: progressBarWidth(step) }}></div>
+      <div className="progress-wrapper">
+        <div className="progress-bar" style={{ width: progressBarWidth() }}></div>
+      </div>
 
       <form onSubmit={handleSubmit}>
         {formErrors.length > 0 && (
           <div className="error-messages">
-            {formErrors.map((error, index) => (
-              <p key={index} className="error">{error}</p>
+            {formErrors.map((err, i) => (
+              <p key={i} className="error">{err}</p>
             ))}
           </div>
         )}
 
-        {/* Step 1: Project Details */}
         {step === 1 && (
           <div>
             <div className="form-group">
-              <label htmlFor="title">Project Title</label>
+              <label htmlFor="title">✨ Project Title</label>
               <input
                 type="text"
                 id="title"
@@ -110,9 +108,8 @@ const PostProject = () => {
                 required
               />
             </div>
-
             <div className="form-group">
-              <label htmlFor="description">Project Description</label>
+              <label htmlFor="description">📋 Description</label>
               <textarea
                 id="description"
                 value={description}
@@ -120,72 +117,60 @@ const PostProject = () => {
                 required
               />
             </div>
-
-            <button type="submit">Next</button>
+            <button className="fancy-btn" type="submit">Next ➡️</button>
           </div>
         )}
 
-        {/* Step 2: Team Roles */}
         {step === 2 && (
           <div>
-            <h3>Team Roles</h3>
-            {teammates.map((teammate, index) => (
-              <div key={index} className="teammate-field">
+            <h3>👥 Team Roles</h3>
+            {teammates.map((tm, i) => (
+              <div key={i} className="teammate-field">
                 <input
                   type="text"
                   name="role_name"
-                  placeholder="Role Name"
-                  value={teammate.role_name}
-                  onChange={(e) => handleTeammateChange(index, e)}
+                  placeholder="Role (e.g. Designer)"
+                  value={tm.role_name}
+                  onChange={(e) => handleTeammateChange(i, e)}
                   required
                 />
                 <input
                   type="number"
                   name="num_teammates"
-                  placeholder="Number of Teammates"
-                  value={teammate.num_teammates}
-                  onChange={(e) => handleTeammateChange(index, e)}
+                  placeholder="Teammates Needed"
+                  value={tm.num_teammates}
+                  onChange={(e) => handleTeammateChange(i, e)}
                   required
                 />
               </div>
             ))}
-            <button type="button" onClick={addTeammateField}>Add Role</button>
-            <button type="submit">Next</button>
+            <button type="button" className="add-btn" onClick={addTeammateField}>+ Add Role</button>
+            <button className="fancy-btn" type="submit">Next ➡️</button>
           </div>
         )}
 
-        {/* Step 3: Review & Confirm */}
         {step === 3 && (
           <div>
-            <h3>Confirm Your Details</h3>
+            <h3>📦 Confirm Your Details</h3>
             <div className="confirmation-details">
               <p><strong>Title:</strong> {title}</p>
               <p><strong>Description:</strong> {description}</p>
               <h4>Team Roles</h4>
               <ul>
-                {teammates.map((teammate, index) => (
-                  <li key={index}>{teammate.role_name} - {teammate.num_teammates} teammates</li>
+                {teammates.map((tm, i) => (
+                  <li key={i}>{tm.role_name} - {tm.num_teammates} teammates</li>
                 ))}
               </ul>
             </div>
-            <button type="button" onClick={() => setStep(2)}>Go Back</button>
-            <button type="submit">{isSubmitting ? 'Submitting...' : 'Submit Project'}</button>
+            <button type="button" onClick={() => setStep(2)}>🔙 Go Back</button>
+            <button className="fancy-btn" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : '🚀 Submit Project'}
+            </button>
           </div>
         )}
       </form>
 
-      {/* Toast Container */}
-      <ToastContainer 
-        position="top-center" 
-        autoClose={5000} 
-        hideProgressBar 
-        newestOnTop={false} 
-        closeOnClick 
-        rtl={false} 
-        pauseOnFocusLoss 
-        draggable 
-        pauseOnHover 
-      />
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
     </div>
   );
 };
