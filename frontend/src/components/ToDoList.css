@@ -1,0 +1,91 @@
+.todo-list {
+    background: #f0f8ff; /* Soft light blue background */
+    padding: 20px;
+    margin: 2rem auto;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 172, 255, 0.2);
+    backdrop-filter: blur(5px);
+  }
+  
+  .todo-list h3 {
+    font-size: 1.3rem;
+    color: #007bff;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 0 0 6px rgba(0, 119, 255, 0.2);
+  }
+  
+  .todo-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .todo-input input {
+    flex: 1;
+    width: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #88f3da;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .todo-input button {
+    padding: 10px 14px;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .todo-input button:hover {
+    background-color: #009f7f;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px;
+    color:rgb(0, 72, 255);
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+  }
+  
+  li.completed {
+    background-color: rgba(0, 255, 0, 0.2); /* Light green for completed tasks */
+    text-decoration: line-through;
+  }
+  
+  li:hover {
+    background-color: rgba(0, 172, 255, 0.1); /* Light blue hover effect */
+  }
+  
+  .todo-actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .icon {
+    cursor: pointer;
+    color: #007bff;
+    transition: 0.2s ease;
+    font-size: 1.2rem;
+  }
+  
+  .icon:hover {
+    color: #00b894; /* Hover effect for icons */
+  }
+  

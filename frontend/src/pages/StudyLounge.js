@@ -3,6 +3,7 @@ import { createRoom, getAllRooms } from '../utils/api';
 import { motion } from 'framer-motion';
 import { FaUsers, FaClock } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import 'react-toastify/dist/ReactToastify.css';
 import './StudyLounge.css';
 
@@ -13,7 +14,9 @@ const StudyLounge = () => {
   const [maxMembers, setMaxMembers] = useState(5);
   const [scheduledTime, setScheduledTime] = useState('');
   const [rooms, setRooms] = useState([]);
+  const navigate = useNavigate(); // Initialize the navigate function
 
+  // Function to create a room
   const handleCreateRoom = async () => {
     if (!topic || !scheduledTime || !maxMembers) {
       toast.warn("Please fill all fields before creating a room!");
@@ -23,8 +26,8 @@ const StudyLounge = () => {
     try {
       const createdRoom = await createRoom(topic, maxMembers, scheduledTime, 1); 
       toast.success(createdRoom.message || "Room created successfully!");
-      fetchRooms();
-      setTopic('');
+      fetchRooms(); // Fetch the updated list of rooms after creation
+      setTopic(''); // Reset form fields
       setMaxMembers(5);
       setScheduledTime('');
     } catch (error) {
@@ -32,18 +35,47 @@ const StudyLounge = () => {
     }
   };
 
+  // Function to fetch all rooms
   const fetchRooms = async () => {
     try {
       const roomList = await getAllRooms();
-      setRooms(roomList);
+      setRooms(roomList); // Set the fetched rooms to state
     } catch (error) {
       console.error('Failed to fetch rooms');
     }
   };
 
   useEffect(() => {
-    fetchRooms();
+    fetchRooms(); // Fetch rooms on component mount
   }, []);
+
+  // Function to handle joining a room
+  const handleJoinRoom = async (roomId) => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'))
+      const userId = user.student_id;  // Replace with actual logged-in user's ID
+      const response = await fetch(`http://localhost:5000/api/study-lounge/${roomId}/join`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ student_id: userId }), // Send student_id as part of the request
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        toast.success('Joined the room successfully!');
+        navigate(`/study-lounge/room/${roomId}`); // Navigate to the room details page
+      } else {
+        toast.error(data.error || 'Failed to join room');
+      }
+    } catch (error) {
+      toast.error('An error occurred while joining the room');
+      console.error('Error joining room:', error);
+    }
+  };
+  
 
   return (
     <motion.div
@@ -125,7 +157,7 @@ const StudyLounge = () => {
                   <p className="card-description">Join this room for collaborative study sessions.</p>
                   <button
                     className="study-lounge-join-button"
-                    onClick={() => toast.info(`Joined room ${room.room_id}`)}
+                    onClick={() => handleJoinRoom(room.room_id)} // Join room and navigate to its detail page
                   >
                     Join Room
                   </button>

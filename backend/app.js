@@ -23,6 +23,7 @@ app.use(express.json());
 const studentRoutes = require('./routes/studentRoutes');
 const authRoutes = require('./routes/authRoutes');
 const studyLoungeRoutes = require('./routes/studyLoungeRoutes');
+const roomDetailsRoutes = require('./routes/roomDetailsRoutes');
 const resourcehubRoutes = require('./routes/resourceRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const findProjectsRoutes = require('./routes/findProjectRoutes');
@@ -33,6 +34,7 @@ const findProjectsRoutes = require('./routes/findProjectRoutes');
 app.use('/api/student', studentRoutes); 
 app.use('/api/auth', authRoutes);
 app.use('/api/study-lounge', studyLoungeRoutes);
+app.use('/api/room-details', roomDetailsRoutes); // Room details routes
 app.use('/api/resourcehub', resourcehubRoutes);
 app.use('/api/projects', projectRoutes); // Project routes
 app.use('/api/find-projects', findProjectsRoutes); // Find Projects routes

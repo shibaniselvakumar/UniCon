@@ -60,5 +60,25 @@ router.delete('/:id', async (req, res) => {
     return res.status(500).json({ message: 'Error deleting student' });
   }
 });
+// in studentRoutes.js
+router.post('/names', async (req, res) => {
+  const { ids } = req.body;
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ error: 'Invalid ID list' });
+  }
+
+  try {
+    const placeholders = ids.map(() => '?').join(',');
+    const [rows] = await db.execute(
+      `SELECT student_id, name FROM student WHERE student_id IN (${placeholders})`,
+      ids
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error fetching names' });
+  }
+});
+
 
 module.exports = router;

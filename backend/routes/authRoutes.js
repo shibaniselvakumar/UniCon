@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
       return res.status(404).json({ message: 'Student not found' });
     }
 
-    res.status(200).json({ message: 'Login successful', student: results[0] });
+    res.status(200).json({ message: 'Login successful', user: results[0] });
   } catch (err) {
     console.error('Login error:', err);
     return res.status(500).json({ message: 'Server error' });

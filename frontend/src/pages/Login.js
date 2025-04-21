@@ -24,11 +24,15 @@ const Login = () => {
   
       const data = await res.json();
   
-      if (res.ok) {
-        alert('Login successful');
-        // You can store user data if needed
-        // localStorage.setItem('student', JSON.stringify(data.student));
-        navigate('/dashboard'); // or any page you want
+      if (res.ok && data.user) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        console.log('User data:', localStorage.getItem('user'));
+
+        // Optional: if your backend sends a token, you can store it too
+        // localStorage.setItem('token', data.token);
+
+        alert('Login successful! 🎉' );
+        navigate('/dashboard'); 
       } else {
         alert(data.message || 'Login failed');
       }

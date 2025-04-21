@@ -1,0 +1,29 @@
+.countdown-timer {
+  background:#e6f3ff;
+  padding: 16px 2px;
+  border-radius: 14px;
+  color: #d6b4ff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-align: center;
+  box-shadow: 0 0 16px rgba(180, 108, 255, 0.2);
+  border: 1px solid rgba(186, 138, 255, 0.2);
+  backdrop-filter: blur(5px);
+  max-width: 360px;
+  margin: 1rem;
+  text-shadow: 0 0 5px #b97bff66;
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+/* Cool pulsing glow */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(180, 108, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(180, 108, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(180, 108, 255, 0.1);
+  }
+}

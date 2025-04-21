@@ -1,0 +1,32 @@
+.room-members {
+    background: #e6f3ff;
+    padding: 16px;
+    margin: 1rem auto;
+    border-radius: 12px;
+    max-width: 500px;
+    box-shadow: 0 3px 10px rgba(0, 117, 255, 0.1);
+  }
+  
+  .room-members h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .room-members ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .room-members li {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .member-icon {
+    margin-right: 10px;
+    color: #007bff; 
+  }
+  
