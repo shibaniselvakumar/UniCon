@@ -1,26 +1,49 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
+import { motion } from 'framer-motion';
+import { FaUserFriends, FaTools, FaBookOpen } from 'react-icons/fa';
 
 const Dashboard = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
+  const [typedText, setTypedText] = useState(''); // State for the typed text
+  const text = "Buuild. Collaborate. Shine in the Galaxy of Innovation."; // The text to type
 
-  const handleEnterStudyLounge = () => {
-    navigate('/study-lounge'); // Navigate to Study Lounge page
-  };
+  useEffect(() => {
+    let index = 0;
+    let typingInterval; // To hold the typing interval reference
 
-  const handleExploreBuildWithMe = () => {
-    navigate('/buildwithme'); // Navigate to Build With Me page
-  };
+    // Typing speed
+    const typingSpeed = 100; // 100ms per character
 
-  const handleExploreResources = () => {
-    navigate('/resourcehub'); // Navigate to Resource Hub page
-  };
+    // Function to type the text one character at a time
+    const typeText = () => {
+      if (index < text.length-1) {
+        setTypedText((prevText) => prevText + text[index]); // Append the next character
+        index++;
+      } else {
+        clearInterval(typingInterval); // Stop typing once text is fully typed
+      }
+    };
+
+    // Check if the text is not undefined or empty before starting the typing effect
+    if (text !== undefined && text !== '') {
+      setTypedText(''); // Reset typed text when component mounts
+      typingInterval = setInterval(typeText, typingSpeed); // Start typing effect
+    }
+
+    // Cleanup function to clear the typing interval if the component unmounts
+    return () => {
+      clearInterval(typingInterval);
+    };
+  }, []); // Empty dependency array to ensure this only runs once
+
 
   return (
     <div className="dashboard-wrapper">
+      {/* Navbar */}
       <nav className="navbar">
-        <div className="app-name">UniCon</div>
+        <div className="app-name">🪐 UniCon</div>
         <div className="nav-links">
           <span>Dashboard</span>
           <span>Profile</span>
@@ -28,63 +51,78 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      <main className="dashboard-content">
-        <h1>Welcome to UniCon</h1>
-        <div className="features-container">
-          <div className="feature-panel study">
-            <h2>🧠 Study Lounge</h2>
-            <p>A dedicated space to study together with global peers.</p>
-            <button onClick={handleEnterStudyLounge}>Enter</button>
-          </div>
-
-          <div className="feature-panel build">
-            <h2>🤝 Build With Me</h2>
-            <p>Find collaborators and build exciting projects together.</p>
-            <button onClick={handleExploreBuildWithMe}>Explore</button>
-          </div>
-
-          <div className="feature-panel resources">
-            <h2>📚 Resource Hub</h2>
-            <p>Access notes, past papers, and curated learning materials.</p>
-            <button onClick={handleExploreResources}>Browse</button> {/* Navigate to Resource Hub */}
-          </div>
+      {/* Cinematic Hero Section */}
+      <section className="hero">
+        <div className="rotating-planet"></div>
+        <div className="hero-content">
+          <h1 className="hero-title">
+            {typedText} {/* Display typed text here */}
+          </h1>
+          <p>
+            Join forces with students across dimensions. One platform. Infinite possibilities.
+          </p>
+          <div className="scroll-indicator">▼</div>
         </div>
+      </section>
+
+      {/* Main Features */}
+      <main className="dashboard-content">
+        <motion.div
+          className="features-container"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="feature-card">
+            <video src="/videos/study.mp4" autoPlay loop muted playsInline className="feature-bg" />
+            <div className="feature-content">
+              <div className="feature-card-icon"><FaUserFriends /></div>
+              <h3>Study Lounge</h3>
+              <p>Join topic-focused study rooms, track time, and collaborate with students live.</p>
+              <button onClick={() => navigate('/study-lounge')}>Explore</button>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            <video src="/videos/build.mp4" autoPlay loop muted playsInline className="feature-bg" />
+            <div className="feature-content">
+              <div className="feature-card-icon"><FaTools /></div>
+              <h3>Build With Me</h3>
+              <p>Post and join projects, manage tasks, and build amazing things together.</p>
+              <button onClick={() => navigate('/buildwithme')}>Start Building</button>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            <video src="/videos/resource.mp4" autoPlay loop muted playsInline className="feature-bg" />
+            <div className="feature-content">
+              <div className="feature-card-icon"><FaBookOpen /></div>
+              <h3>Resource Hub</h3>
+              <p>Share notes, upload materials, and access useful content from across campuses.</p>
+              <button onClick={() => navigate('/resourcehub')}>Browse Resources</button>
+            </div>
+          </div>
+        </motion.div>
       </main>
 
       {/* Gamification Panel */}
-      <div className="gamification-panel">
-        <h2>🎮 Your Progress</h2>
+      <section className="gamification-panel">
+        <h2>🚀 Your Mission Stats</h2>
         <div className="gamify-stats">
           <div className="gamify-card">
-            <span className="icon">🏅</span>
-            <div>
-              <h4>Badges</h4>
-              <p>Contributor, Team Player</p>
-            </div>
+            <h4>XP Points</h4>
+            <p>4,200</p>
           </div>
           <div className="gamify-card">
-            <span className="icon">🌟</span>
-            <div>
-              <h4>Level</h4>
-              <p>Level 3</p>
-            </div>
+            <h4>Collaborations</h4>
+            <p>12 Projects</p>
           </div>
           <div className="gamify-card">
-            <span className="icon">🔥</span>
-            <div>
-              <h4>Streak</h4>
-              <p>5 days</p>
-            </div>
-          </div>
-          <div className="gamify-card">
-            <span className="icon">🎯</span>
-            <div>
-              <h4>Goal</h4>
-              <p>3 of 5 tasks complete</p>
-            </div>
+            <h4>Study Time</h4>
+            <p>95 Hours</p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

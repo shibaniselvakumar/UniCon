@@ -1,133 +1,519 @@
-/* src/pages/Dashboard.css */
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;500&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins' ;
-    background-color: #f9fafb;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #2C2E3E;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding: 0 1rem;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png'),
+              radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  animation: panBackground 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+@keyframes panBackground {
+  from { background-position: 0 0, 50% 50%; }
+  to { background-position: 1000px 0, 50% 50%; }
+}
+
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.2rem;
+  margin: 0;
+  background: linear-gradient(to right, #FF6EC7, #9D00FF, #7DF9FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #cccccc;
+  margin-top: 1rem;
+  max-width: 700px;
+
+}
+
+@keyframes glitch {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  40% { transform: skew(2deg); }
+  60% { transform: skew(-1deg); }
+  80% { transform: skew(1deg); }
+  100% { transform: skew(0deg); }
+}
+
+.rotating-planet {
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #9D00FF, #2C2E3E);
+  border-radius: 50%;
+  animation: rotatePlanet 20s linear infinite;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+@keyframes rotatePlanet {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.scroll-indicator {
+  position: absolute;  /* Change from absolute to relative */
+  margin-top: 400px;    /* Add some space below the subtext */
+  font-size: 1.5rem;
+  animation: pulseScroll 1.6s infinite;
+  color: #7DF9FF;
+  opacity: 0.7;
+}
+
+@keyframes pulseScroll {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50% { transform: translateY(8px) translateX(-50%); }
+}
+
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.app-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: #FF6EC7;
+}
+
+.nav-links span {
+  margin-left: 1.5rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: 0.3s;
+}
+
+.nav-links span:hover {
+  color: #7DF9FF;
+}
+
+/* === MAIN CONTENT === */
+.dashboard-content {
+  padding: 4rem 2rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-panel {
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(188, 35, 35, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(125, 249, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-panel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(255, 110, 199, 0.3);
+}
+
+.feature-panel h2 {
+  color: #FF6EC7;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.feature-panel p {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.feature-panel button {
+  padding: 0.6rem 1.4rem;
+  background: #9D00FF;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.feature-panel button:hover {
+  background: #7DF9FF;
+  color: #2C2E3E;
+}
+
+/* === GAMIFICATION PANEL === */
+.gamification-panel {
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  margin-top: 4rem;
+}
+
+.gamification-panel h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #7DF9FF;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.gamify-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.gamify-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.15);
+  min-width: 200px;
+  text-align: center;
+}
+
+.gamify-card h4 {
+  color: #FF6EC7;
+  font-size: 1rem;
+}
+
+.gamify-card p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* === SCROLL ANIMATIONS === */
+.feature-panel, .gamify-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.feature-panel.reveal, .gamify-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Global reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hero-title {
+  letter-spacing: 0; /* Ensure no extra spacing */
+  word-spacing: 0; /* Ensure no extra space between words */
+  font-size: 3rem; /* Adjust font size as needed */
+}
+
+
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  background-color: #0c0c0c;
+  font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Container for the entire dashboard */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar fix */
+.dashboard-navbar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 12px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  color: white;
+}
+
+/* Hero Section */
+.dashboard-hero {
+  text-align: center;
+  color: #fff;
+  padding: 5rem 2rem 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboard-hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #FFD700, #FF8C00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard-hero p {
+  font-size: 1.5rem;
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Planet Animation */
+.dashboard-planet {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at center, #4444ff, #222288);
+  border-radius: 50%;
+  animation: rotatePlanet 60s linear infinite;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+@keyframes rotatePlanet {
+  0% {
+    transform: rotate(0deg) translateX(0);
   }
-  
-  
-  .dashboard-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  100% {
+    transform: rotate(360deg) translateX(0);
   }
-  
-  /* Navbar */
-  .navbar {
-    background-color: #1e293b;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    align-items: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dashboard-hero h1 {
+    font-size: 2.5rem;
   }
-  
-  .app-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #38bdf8;
-  }
-  
-  .nav-links span {
-    margin-left: 1.5rem;
-    cursor: pointer;
+
+  .dashboard-hero p {
     font-size: 1rem;
   }
-  
-  /* Main Content */
-  .dashboard-content {
-    padding: 2rem;
-    flex: 1;
-  }
-  
-  .dashboard-content h1 {
-    margin-bottom: 2rem;
-    color: #1e293b;
-  }
-  
-  /* Feature Panels */
-  .features-container {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .feature-panel {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    flex: 1;
-    min-width: 280px;
-    transition: 0.3s;
-  }
-  
-  .feature-panel:hover {
-    transform: translateY(-5px);
-  }
-  
-  .feature-panel h2 {
-    color: #0f172a;
-    margin-bottom: 0.5rem;
-  }
-  
-  .feature-panel p {
-    color: #475569;
-    margin-bottom: 1rem;
-  }
-  
-  .feature-panel button {
-    padding: 0.6rem 1.2rem;
-    background-color: #38bdf8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .feature-panel button:hover {
-    background-color: #0ea5e9;
-  }
-  /* Gamification Panel */
-.gamification-panel {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    border-radius: 12px;
-    background-color: lavender;
-  }
-  
-  .gamification-panel h2 {
-    margin-bottom: 1rem;
-    color: #334155;
-  }
-  
-  .gamify-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  
-  .gamify-card {
-    background-color: #fff;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    min-width: 220px;
-    flex: 1;
+
+  .dashboard-navbar {
+    flex-direction: column;
     gap: 1rem;
-    transition: transform 0.2s;
+    text-align: center;
   }
-  
-  .gamify-card:hover {
-    transform: scale(1.03);
-  }
-  
-  .gamify-card .icon {
-    font-size: 2rem;
-  }
-  
+}
+
+/* Feature Panel Section */
+.feature-panel {
+  width: 100%;
+  background: linear-gradient(145deg, #0a0a0a, #161616);
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-panel h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #fdfdfd;
+  text-align: center;
+}
+
+.feature-cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.feature-card {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(130, 130, 255, 0.3);
+}
+
+.feature-card-icon {
+  font-size: 3rem;
+  color: #6e6eff;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 350px; /* Uniform height for all cards */
+  flex: 1;
+  margin: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Ensures full video is shown in the box */
+  z-index: 1;
+  opacity: 0.4;        /* Make video background subtle */
+}
+
+.feature-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  backdrop-filter: blur(6px); /* optional glass effect for readability */
+}
+.feature-card:hover .feature-content {
+  backdrop-filter: blur(0px);
+  color: #434141; /* slightly lighter text for contrast */
+}
+
+.feature-card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.feature-card button {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feature-card button:hover {
+  background-color: #0097a7;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  height: 350px;
+  flex: 1;
+  margin: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.02); /* subtle zoom effect */
+}
+
+.feature-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+.feature-card:hover .feature-bg {
+  opacity: 2.5; /* Less transparent on hover */
+}
