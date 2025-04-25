@@ -1,85 +1,119 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fef6f0;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body, html {
+ 
+
+  background: radial-gradient(ellipse at top, #0f0c29, #302b63, #24243e);
+  background: url('https://cdn.pixabay.com/photo/2023/03/09/07/36/spaceship-7839421_1280.jpg') no-repeat center center fixed
+   !important;
+
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  color: #fff !important;
+}
+.study-lounge-fullscreen {
+  background: transparent;
 }
 
+
+.study-lounge-form-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(124, 27, 243, 0.4);
+}
+
+
 .study-lounge-fullscreen {
-  background: #fef6f0;
   padding: 40px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(36, 36, 36, 0.85);
 }
 
+/* Header */
 .study-lounge-header {
   width: 100%;
-  background: linear-gradient(135deg, #d2b6ff, #eacfff);
-  color: #fff;
+  background: linear-gradient(to right, rgba(28, 16, 63, 0.95), rgba(44, 22, 97, 0.95));
+  color: #d7d2e4;
   text-align: center;
-  padding: 25px 0;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  padding: 30px 20px;
+  border-radius: 18px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 25px rgba(156, 107, 255, 0.5), 0 0 60px rgba(90, 30, 180, 0.3);
+  border: 2px solid rgba(156, 107, 255, 0.35);
+  backdrop-filter: blur(6px);
 }
 
 .study-lounge-title {
-  font-size: 3rem;
-  font-weight: bold;
+  color: whitesmoke;
+  font-size: 3.8rem;
+  font-weight: 800;
   margin: 0;
+  letter-spacing: 2.5px;
+  text-shadow: 0 0 10px #b891ff, 0 0 20px #a865ff;
+  font-family: 'Orbitron', sans-serif; /* Looks futuristic and thematic */
 }
+
 
 /* Form Container */
 .study-lounge-form-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.05);
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(156, 107, 255, 0.2);
   width: 100%;
   max-width: 500px;
   margin-bottom: 30px;
 }
 
 .study-lounge-form-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 600;
+  color: #e0e0f0;
 }
 
 .study-lounge-input {
   width: 100%;
   padding: 14px;
   margin-bottom: 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border: 1px solid #9c6bff;
   font-size: 1rem;
-  background: #fff9f9;
+  background: #1f1f2e;
+  color: #fff;
   transition: border-color 0.3s;
 }
 
 .study-lounge-input:focus {
-  border-color: #d2b6ff;
+  border-color: #c07eff;
   outline: none;
 }
 
 .study-lounge-button {
   width: 100%;
   padding: 14px;
-  background: #ffc1cc;
+  background: #9c6bff;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
+  cursor: pointer;
   transition: background 0.3s;
 }
 
 .study-lounge-button:hover {
-  background: #ff9aa2;
+  background: #c07eff;
 }
 
-/* Rooms */
+/* Rooms Section */
 .study-lounge-rooms-container {
   width: 100%;
   max-width: 1200px;
@@ -87,10 +121,11 @@ body {
 }
 
 .study-lounge-rooms-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  color: #444;
   margin-bottom: 20px;
+  color: #e0e0f0;
+  text-shadow: 0 0 8px rgba(156, 107, 255, 0.3);
 }
 
 .room-cards-container {
@@ -101,28 +136,32 @@ body {
 }
 
 .study-lounge-room-card {
-  background: #fff;
+  background: rgba(0, 0, 0, 0.7);
   width: 300px;
   border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(156, 107, 255, 0.3);
+  border: 2px solid #9c6bff;
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .study-lounge-room-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px rgba(156, 107, 255, 0.6);
 }
 
 .card-header {
-  background: #b2d8d8;
-  color: #333;
+  background: #151528;
+  color: #9c6bff;
   padding: 15px;
   text-align: center;
+  border-bottom: 2px solid #9c6bff;
 }
 
 .card-header h4 {
   margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
 }
 
 .card-stats {
@@ -130,7 +169,7 @@ body {
   justify-content: space-around;
   margin-top: 10px;
   font-size: 0.9rem;
-  color: #555;
+  color: #aaa;
 }
 
 .card-stat {
@@ -146,12 +185,12 @@ body {
 .card-description {
   font-size: 1rem;
   margin-bottom: 16px;
-  color: #555;
+  color: #ccc;
 }
 
 .study-lounge-join-button {
   padding: 10px 20px;
-  background: #ffb3c6;
+  background: #9c6bff;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -160,7 +199,7 @@ body {
 }
 
 .study-lounge-join-button:hover {
-  background: #f293a1;
+  background: #b78dff;
 }
 
 .study-lounge-no-rooms {
@@ -169,19 +208,23 @@ body {
   margin-top: 20px;
 }
 
+/* Avatar */
 .avatar-emoji {
-  font-size: 2.5rem;
+  font-size: 3rem;
   animation: float 2s ease-in-out infinite;
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
 }
 
+/* Animations */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 8px rgba(255, 77, 77, 0.5); }
+  50% { box-shadow: 0 0 16px rgba(255, 77, 77, 0.8); }
+  100% { box-shadow: 0 0 8px rgba(255, 77, 77, 0.5); }
 }

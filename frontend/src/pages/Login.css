@@ -1,0 +1,207 @@
+/* src/pages/Login.css */
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  
+  .login-left {
+    flex: 1;
+
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  }
+  
+  .brand-name {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #00bfff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    max-width: 400px;
+    text-align: left;
+    color: #ddd;
+  }
+  
+  .side-image {
+    width: 100%;
+    margin-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #1e90ff;
+    object-fit: cover;
+    height: auto;
+  }
+  
+  .login-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .login-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  .login-card h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .login-card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-card input {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
+  }
+  
+  .login-card input::placeholder {
+    color: #bbb;
+  }
+  
+  .login-button {
+    background: #01a3d8;
+    border: none;
+    padding: 0.9rem;
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    height:47px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .login-card button:hover {
+    background: #016589;
+  }
+  
+  .register-link {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .register-link span {
+    color: #00bfff;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+    }
+  
+    .login-left {
+      align-items: center;
+      text-align: center;
+    }
+    .login-right {
+      align-items: center;
+      text-align: center;
+    }
+  
+    .side-image {
+      display: none;
+    }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .brand-name, .tagline {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .brand-name {
+    animation-delay: 0.5s;
+  }
+  
+  .tagline {
+    animation-delay: 1s;
+  }
+  
+/* src/pages/Login.css */
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-image: url('./assets/galaxy4.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+  }
+  
+
+  
+  .brand-name {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #00bfff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.8), 0 0 25px rgba(0, 191, 255, 0.6);
+   
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    max-width: 400px;
+    color: #ddd;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+
+  .toast-success {
+    background-color: lavenderblush; 
+    color: white;
+  }
+
+    

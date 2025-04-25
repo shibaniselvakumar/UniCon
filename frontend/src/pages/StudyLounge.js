@@ -5,7 +5,7 @@ import { FaUsers, FaClock } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import 'react-toastify/dist/ReactToastify.css';
-import './StudyLounge.css';
+import './StudyLounge.css'; // Import your background image
 
 const emojiAvatars = ['📚', '🧠', '🎓', '📝', '💡', '🤓'];
 

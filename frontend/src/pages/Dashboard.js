@@ -53,7 +53,7 @@ const Dashboard = () => {
 
       {/* Cinematic Hero Section */}
       <section className="hero">
-        <div className="rotating-planet"></div>
+      
         <div className="hero-content">
           <h1 className="hero-title">
             {typedText} {/* Display typed text here */}
@@ -66,13 +66,16 @@ const Dashboard = () => {
       </section>
 
       {/* Main Features */}
+      <section className="starbackground">
       <main className="dashboard-content">
+      <h2 className='feature-title'>🚀 Mission Control</h2>
         <motion.div
           className="features-container"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          
           <div className="feature-card">
             <video src="/videos/study.mp4" autoPlay loop muted playsInline className="feature-bg" />
             <div className="feature-content">
@@ -104,6 +107,7 @@ const Dashboard = () => {
           </div>
         </motion.div>
       </main>
+      </section>
 
       {/* Gamification Panel */}
       <section className="gamification-panel">

@@ -39,7 +39,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       return res.status(400).json({ message: 'No file uploaded.' });
     }
   
-    const { title, description, tags, uploaderId } = req.body;
+    const { title, description, tags, uploaderId, category } = req.body;
   
     if (!title || !uploaderId) {
       return res.status(400).json({ message: 'Title and uploaderId are required.' });
