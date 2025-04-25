@@ -27,13 +27,6 @@ const BuildWithMe = () => {
             <h3>Post a Project</h3>
             <p>Create a new project and find teammates with specific skills.</p>
           </Link>
-
-          {/* My Projects */}
-          <Link to="/buildwithme/my-projects" className="feature-card fade-in">
-            <span className="feature-icon">📂</span>
-            <h3>My Projects</h3>
-            <p>View and manage the projects you're involved in.</p>
-          </Link>
         </div>
       </div>
     </>

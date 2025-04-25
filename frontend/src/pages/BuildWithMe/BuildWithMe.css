@@ -26,8 +26,8 @@
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  justify-content: space-around;
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
